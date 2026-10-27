@@ -36,13 +36,17 @@ async function fetchProducts() {
     if (!productsResponse.ok || !categoriesResponse.ok) {
       throw new Error('មិនអាចទាញយកទិន្នន័យពី API បានទេ។')
     }
-
+    console.log('productsResponse',productsResponse)
+    console.log('categoriesResponse',categoriesResponse)
     const productsData = await productsResponse.json()
     const categoriesData = await categoriesResponse.json()
 
+    console.log('productsData',productsData)
+    console.log('categoriesData',categoriesData)
     products.value = productsData.products
     categories.value = categoriesData
   } catch (err) {
+    console.log('fetch product error',err)
     error.value = err.message || 'មានបញ្ហាក្នុងការទាញយកទិន្នន័យ។'
   } finally {
     loading.value = false
